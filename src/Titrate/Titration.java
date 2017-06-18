@@ -15,10 +15,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.net.URL;
-
+/**
+ * A burette and a flask setup for acid-base titration. 
+ * @author Jungho Park
+ *
+ */
 class Titration extends Panel implements ActionListener, AdjustmentListener {
 	/**
-	 * 
+	 * local control variables
 	 */
 	private static final long serialVersionUID = 1L;
 	Titrate applet;
@@ -30,11 +34,12 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	private Label textLabel9, textLabel10, textLabel11, textLabel12;
 	private Label textLabel13, textLabel14, textLabel15, textLabel16;
 	private Label textLabel17, textLabel18, textLabel19, textLabel20;
-	private Label textLabel21, textLabel22, textLabel23, textLabel24;
-
-	public Image myImage;
+	private Label textLabel21;
+	// Image for titration setup
+	public Image mFlask;
 
 	double FlaskL[], FlaskR[], TotalVol;
+	// Flash shape in 2D
 	static double[][] Flask2 = { { 39, 74 }, { 37, 76 }, { 36, 77 }, { 35, 78 }, { 35, 78 }, { 34, 79 }, { 34, 79 },
 			{ 34, 79 }, { 34, 79 }, { 34, 79 }, { 34, 79 }, { 35, 79 }, { 35, 78 }, { 35, 78 }, { 35, 78 }, { 35, 78 },
 			{ 36, 78 }, { 36, 77 }, { 36, 77 }, { 36, 77 }, { 37, 77 }, { 37, 76 }, { 37, 76 }, { 38, 76 }, { 38, 75 },
@@ -44,7 +49,11 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			{ 45, 68 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 47, 66 },
 			{ 47, 66 } };
 	Color IColor;
-
+	
+	/**
+	 * Calculate water reaction
+	 * @param ch: chemistry class object
+	 */
 	private void SolveH2O(Chem ch)
 	{
 		double x, sumhoh;
@@ -62,7 +71,12 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			}
 		}
 	}
-
+	
+	/**
+	 * Simulate acid/base reactions and evaluate the remaining amount of H+ and OH- ions.
+	 * @param ch: chemistry obj
+	 * @param iflag: if it is 1, solution #1 is acid
+	 */
 	private void SolveAcidBase(Chem ch, int iflag) {
 		double C, CIon, CH_OH, KEq;
 		double X, X1, X2, sumIon;
@@ -112,7 +126,12 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			ch.COH = CH_OH;
 		}
 	}
-
+	
+	/**
+	 * Calculate the pH of the solution in a chemistry object
+	 * @param ch: chemistry class object
+	 * @return: calculated pH of the chemical system
+	 */
 	private double CalcPH(Chem ch) {
 		int i;
 		boolean Flag1;
@@ -140,7 +159,11 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		}
 		return (-Math.log(ch.CH) / Math.log(10.0));
 	}
-
+	
+	/**
+	 * Set the variable IColor to the indicator colour as a function of pH
+	 * @param tpH
+	 */
 	private void SetIColor(double tpH) {
 		double tmp;
 		switch (applet.chem.IIndicator) {
@@ -186,11 +209,16 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 				IColor = new Color(255, 0, 0);
 		}
 	}
-
+	
+	/**
+	 * Draw the liquid level of the solution #1 and #2
+	 */
 	private void Picture1_Paint(Graphics g) {
 		int i, ix, iy;
 		Color savedColor;
 		savedColor = g.getColor();
+		// If paintflag is true, the lines will be drawn on the image.
+		// If it is false, the lines will be combined (XORed) with the image.
 		if (applet.paintflag) {
 			// g.setPaintMode();
 			g.setColor(new Color(210, 210, 210));
@@ -216,67 +244,14 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		g.setColor(savedColor);
 	}
 
-	private void Timer1_Timer() {
-		double tpH, PVol, DiffVol;
-		int tmp;
-		tmp = slider.getValue();
-		if (but3.getLabel() != "Stop" && tmp > 0) {
-			but3.setLabel("Stop");
-		} else if (but3.getLabel() == "Stop" && tmp == 0) {
-			but3.setLabel("Continue");
-		}
-		if ((tmp == 0 || applet.chem.CurrentVol2 == 0) && applet.chem.initflag) {
-			return;
-		} else {
-			applet.chem.initflag = true;
-			tmp = (int) (tmp * tmp);
-			applet.chem.CurrentVol2 = applet.chem.CurrentVol2 - ((double) tmp) / 1000.0;
-			if (applet.chem.CurrentVol2 < 0) {
-				applet.chem.CurrentVol2 = 0;
-				// Timer1.Enabled = False;
-			}
-			TotalVol = applet.chem.Vol1 + applet.chem.Vol2 - applet.chem.CurrentVol2;
-			PVol = applet.chem.Vol1 + applet.chem.Vol2 - applet.chem.PreviousVol2;
-			DiffVol = applet.chem.PreviousVol2 - applet.chem.CurrentVol2;
-			if (applet.chem.AcidFlag1) {
-				applet.chem.CBase = applet.chem.CBase * PVol / TotalVol;
-				applet.chem.CBaseIon = applet.chem.CBaseIon * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
-				applet.chem.COH = applet.chem.COH * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
-				applet.chem.CAcid = applet.chem.CAcid * PVol / TotalVol;
-				applet.chem.CAcidIon = applet.chem.CAcidIon * PVol / TotalVol;
-				applet.chem.CH = applet.chem.CH * PVol / TotalVol;
-				tpH = CalcPH(applet.chem);
-			} else {
-				applet.chem.CBase = applet.chem.CBase * PVol / TotalVol;
-				applet.chem.CBaseIon = applet.chem.CBaseIon * PVol / TotalVol;
-				applet.chem.COH = applet.chem.COH * PVol / TotalVol;
-				applet.chem.CAcid = applet.chem.CAcid * PVol / TotalVol;
-				applet.chem.CAcidIon = applet.chem.CAcidIon * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
-				applet.chem.CH = applet.chem.CH * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
-				tpH = CalcPH(applet.chem);
-			}
-			SetIColor(tpH);
-			if ((applet.chem.Vol2 - applet.chem.CurrentVol2) > applet.chem.NpH * applet.chem.pHInterval) {
-				applet.chem.Vol[applet.chem.NpH] = applet.chem.CurrentVol2;
-				applet.chem.pH[applet.chem.NpH] = tpH;
-				applet.chem.NpH = applet.chem.NpH + 1;
-			} else if (applet.chem.Vol2 == applet.chem.CurrentVol2) {
-				applet.chem.Vol[0] = applet.chem.CurrentVol2;
-				applet.chem.pH[0] = tpH;
-				applet.chem.NpH = 1;
-			}
-			textLabel14.setText(String.valueOf(((int) (applet.chem.CurrentVol2 * 100.0)) / 100.0));
-			textLabel17.setText(String.valueOf(((int) ((applet.chem.Vol2 - applet.chem.CurrentVol2) * 100.0)) / 100.0));
-			textLabel20.setText(String.valueOf(((int) (tpH * 100.0)) / 100.0));
-			repaint();
-			applet.chem.PreviousVol2 = applet.chem.CurrentVol2;
-		}
-	}
-
+    /** 
+     * Setup all controls and manually place them.
+     */
 	public Titration(Titrate applet) {
 		super();
 		this.applet = applet;
 		Insets ins = getInsets();
+		// Absolute positioning
 		setLayout(null);
 		setFont(new Font("Helvetica", Font.PLAIN, 15));
 
@@ -343,7 +318,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		slider.addAdjustmentListener(this);
 		add(slider);
 		URL t1 = applet.getCodeBase();
-		myImage = applet.getImage(t1, "resources/titration.gif");
+		mFlask = applet.getImage(t1, "resources/titration.gif");
 
 		textLabel.setBounds(30 + ins.left, 20 + ins.top, 400, 20);
 		textLabel2.setBounds(30 + ins.left, 40 + ins.top, 400, 20);
@@ -372,24 +347,88 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		but1.setBounds(440 + ins.left, 360 + ins.top, 80, 20);
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
-
+	
+    /**
+     * Draws the image of titration equipment and the liquid level
+     * @see java.awt.Container#paint(java.awt.Graphics)
+     */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
 		}
 		textLabel11.setText(String.valueOf(((int) (applet.chem.Vol2 * 100.0)) / 100.0));
+		// Draw boxes around the scrollbar and input box 
 		g.drawRect(30, 150, 255, 95);
 		g.drawRect(30, 260, 255, 95);
-		g.drawImage(myImage, 480, 10, this);
+		// Draw the image of a burette and flask
+		g.drawImage(mFlask, 480, 10, this);
+		// Draw the liquid level
 		Picture1_Paint(g);
 	}
 
-	int itime = 0;
-
+    /**
+     * The animation thread will call this function every 500 msec. 
+     */
 	public void timer() {
-		Timer1_Timer();
+		double tpH, PVol, DiffVol;
+		int tmp;
+		tmp = slider.getValue();
+		if (but3.getLabel() != "Stop" && tmp > 0) {
+			but3.setLabel("Stop");
+		} else if (but3.getLabel() == "Stop" && tmp == 0) {
+			but3.setLabel("Continue");
+		}
+		if ((tmp == 0 || applet.chem.CurrentVol2 == 0) && applet.chem.initflag) {
+			return;
+		} else {
+			applet.chem.initflag = true;
+			tmp = (int) (tmp * tmp);
+			applet.chem.CurrentVol2 = applet.chem.CurrentVol2 - ((double) tmp) / 1000.0;
+			if (applet.chem.CurrentVol2 < 0) {
+				applet.chem.CurrentVol2 = 0;
+				// Timer1.Enabled = False;
+			}
+			TotalVol = applet.chem.Vol1 + applet.chem.Vol2 - applet.chem.CurrentVol2;
+			PVol = applet.chem.Vol1 + applet.chem.Vol2 - applet.chem.PreviousVol2;
+			DiffVol = applet.chem.PreviousVol2 - applet.chem.CurrentVol2;
+			if (applet.chem.AcidFlag1) {
+				applet.chem.CBase = applet.chem.CBase * PVol / TotalVol;
+				applet.chem.CBaseIon = applet.chem.CBaseIon * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
+				applet.chem.COH = applet.chem.COH * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
+				applet.chem.CAcid = applet.chem.CAcid * PVol / TotalVol;
+				applet.chem.CAcidIon = applet.chem.CAcidIon * PVol / TotalVol;
+				applet.chem.CH = applet.chem.CH * PVol / TotalVol;
+				tpH = CalcPH(applet.chem);
+			} else {
+				applet.chem.CBase = applet.chem.CBase * PVol / TotalVol;
+				applet.chem.CBaseIon = applet.chem.CBaseIon * PVol / TotalVol;
+				applet.chem.COH = applet.chem.COH * PVol / TotalVol;
+				applet.chem.CAcid = applet.chem.CAcid * PVol / TotalVol;
+				applet.chem.CAcidIon = applet.chem.CAcidIon * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
+				applet.chem.CH = applet.chem.CH * PVol / TotalVol + applet.chem.Mol2 * DiffVol / TotalVol;
+				tpH = CalcPH(applet.chem);
+			}
+			SetIColor(tpH);
+			if ((applet.chem.Vol2 - applet.chem.CurrentVol2) > applet.chem.NpH * applet.chem.pHInterval) {
+				applet.chem.Vol[applet.chem.NpH] = applet.chem.CurrentVol2;
+				applet.chem.pH[applet.chem.NpH] = tpH;
+				applet.chem.NpH = applet.chem.NpH + 1;
+			} else if (applet.chem.Vol2 == applet.chem.CurrentVol2) {
+				applet.chem.Vol[0] = applet.chem.CurrentVol2;
+				applet.chem.pH[0] = tpH;
+				applet.chem.NpH = 1;
+			}
+			textLabel14.setText(String.valueOf(((int) (applet.chem.CurrentVol2 * 100.0)) / 100.0));
+			textLabel17.setText(String.valueOf(((int) ((applet.chem.Vol2 - applet.chem.CurrentVol2) * 100.0)) / 100.0));
+			textLabel20.setText(String.valueOf(((int) (tpH * 100.0)) / 100.0));
+			repaint();
+			applet.chem.PreviousVol2 = applet.chem.CurrentVol2;
+		}
 	}
 
+	/**
+	 * Handle adjustment event for a slider
+	 */
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent arg0) {
 		// TODO Auto-generated method stub
@@ -400,7 +439,11 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			// Double.valueOf(textfield1.getText()).doubleValue();
 		}
 	}
-
+	
+    /*
+     * Process button and control clicks
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -420,7 +463,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			slider.setValue(0);
 			but3.setLabel("Start");
 			applet.chem.InitTitration();
-			Timer1_Timer();
+			timer();
 		}
 	}
 }

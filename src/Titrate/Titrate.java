@@ -4,22 +4,25 @@ import java.applet.*;
 import java.awt.*;
 
 /**
+ * This is the main Applet class and the execution begins with the init() method.
+ * 
+ * All classes are placed in the package Titrate.
+ * 
  * This class reads PARAM tags from its HTML host page and sets the color and
- * label properties of the applet. Program execution begins with the init()
- * method.
+ * label properties of the applet. 
  */
 
 public class Titrate extends Applet implements Runnable {
 	/**
-	 * Serial Version UID for serialization
+	 * Serial Version UID to verify the data during deserialization
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * The base panel for the titration applet
+	 * The base panel that holds 8 titration dialog panels. 
 	 */
 	public Panel cards;
 	/**
-	 * 8 sequential pages of titration dialogs
+	 * 8 sequential pages of titration dialogs.
 	 */
 	Introduction panel1;
 	Flask panel2;
@@ -30,20 +33,18 @@ public class Titrate extends Applet implements Runnable {
 	Results panel7;
 	Certificate panel8;
 	/**
-	 * Variables related to the thread for animation.
+	 * Variables for an animation thread.
 	 */
 	int frameNumber = -1;
 	Thread animatorThread;
 	int delay = 500;
-	
+	/**
+	 * Variables for an animation thread.
+	 */
 	Label label1 = new Label();
 	/**
 	 * Some string variables
 	 */
-	private final String labelParam = "label";
-	public final String labelParam2 = "label2";
-	private final String backgroundParam = "background";
-	private final String foregroundParam = "foreground";
 	public String dlgLabel, dlgLabel2;
 	public Color gbgColor;
 	public boolean paintflag = true;
@@ -58,15 +59,17 @@ public class Titrate extends Applet implements Runnable {
 	 * The entry point for the applet.
 	 */
 	public void init() {
-		// add(new JLabel("Look ma! No Menu!"));
+		// obtains the frames
 		Frame[] frames = Frame.getFrames();
 		for (Frame frame : frames) {
 			frame.setMenuBar(null);
 			frame.pack();
 		}
 		usePageParams();
+		// Initialize all forms		
 		initForm();
-
+		// Initialize the default concentrations and volumes of solutions
+		// for an chemistry object
 		chem.Mol1 = 0.2;
 		chem.Molx = chem.Mol1 + Math.random() * chem.Mol1 / 2.0 - chem.Mol1 / 4.0;
 		chem.Mol2 = 0.2;
@@ -77,10 +80,14 @@ public class Titrate extends Applet implements Runnable {
 		chem.K1 = 1e7;
 		chem.AcidFlag2 = false;
 		chem.K2 = 1.6;
+		// Initialize the states of the titration simulation
 		chem.InitTitration();
-		// TODO: Add any constructor code after initForm call.
 	}
 
+	private final String labelParam = "label";
+	private final String labelParam2 = "label2";
+	private final String backgroundParam = "background";
+	private final String foregroundParam = "foreground";
 	/**
 	 * Reads parameters from the applet's HTML host and sets applet properties.
 	 */
@@ -95,6 +102,8 @@ public class Titrate extends Applet implements Runnable {
 
 		/**
 		 * Read the <PARAM NAME="label" VALUE="some string">,
+		 * <PARAM NAME="label" VALUE="XXXX">, and
+		 * <PARAM NAME="label2" VALUE="PaintMode">, and
 		 * <PARAM NAME="background" VALUE="rrggbb">, and
 		 * <PARAM NAME="foreground" VALUE="rrggbb"> tags from the applet's HTML
 		 * host.
@@ -104,9 +113,10 @@ public class Titrate extends Applet implements Runnable {
 		backgroundValue = getParameter(backgroundParam);
 		foregroundValue = getParameter(foregroundParam);
 
-		if ((labelValue == null) || (backgroundValue == null) || (labelValue2 == null) || (foregroundValue == null)) {
+		if ((labelValue == null) || (backgroundValue == null) || 
+				(labelValue2 == null) || (foregroundValue == null)) {
 			/**
-			 * There was something wrong with the HTML host tags. Generate
+			 * If there was something wrong with the HTML host tags, generate
 			 * default values.
 			 */
 			labelValue = defaultLabel;
@@ -114,6 +124,10 @@ public class Titrate extends Applet implements Runnable {
 			backgroundValue = defaultBackground;
 			foregroundValue = defaultForeground;
 		}
+		/*
+		 * If the string value of PARAM label2 is "PaintMode"
+		 * turn on paintflag.
+		 */
 		if (labelValue2.equalsIgnoreCase("PaintMode")) {
 			paintflag = true;
 		} else {

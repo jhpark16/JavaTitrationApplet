@@ -13,7 +13,11 @@ class Chem
 	public double CH, COH;
 	public double MErr;
 	int nInterval;
-		
+	/**
+	 * Initialize chem object	
+	 * @param applet: Applet object
+	 * @param iarray: The number of array elements for pH vs volume graph
+	 */
 	public Chem(Titrate applet, int iarray)
 	{
 		this.applet = applet;
@@ -21,7 +25,9 @@ class Chem
 		Vol = new double[iarray];
 		nInterval = iarray-2;
 	}
-	
+	/**
+	 * Initialize the states of the titration simulation
+	 */
 	public void InitTitration()
 	{
 	  initflag = false;
