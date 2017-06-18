@@ -72,7 +72,7 @@ class Certificate extends Panel implements ActionListener {
 		} else {
 			textLabel5.setText("You finished the virtual acid-base titration lab.");
 		}
-		textLabel3.setText(applet.pan1.textfield1.getText());
+		textLabel3.setText(applet.panel1.textfield1.getText());
 		// g.drawImage(myImage, 400, 20, this);
 	}
 

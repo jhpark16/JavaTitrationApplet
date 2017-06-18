@@ -1,2 +1,3 @@
-Main-Class: Titrate.Titrate
+Manifest-Version: 1.0
+Sealed: true
 

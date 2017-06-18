@@ -186,10 +186,10 @@ class Results extends Panel implements ActionListener {
 		if (!laidOut) {
 			laidOut = true;
 		}
-		textLabel18.setText("Concentration of " + applet.pan2.cbg.getCurrent().getLabel());
-		textLabel23.setText("Volume of " + applet.pan2.cbg.getCurrent().getLabel());
-		textLabel26.setText("Concentration of " + applet.pan3.cbg.getCurrent().getLabel());
-		textLabel29.setText("Volume of " + applet.pan3.cbg.getCurrent().getLabel());
+		textLabel18.setText("Concentration of " + applet.panel2.cbg.getCurrent().getLabel());
+		textLabel23.setText("Volume of " + applet.panel2.cbg.getCurrent().getLabel());
+		textLabel26.setText("Concentration of " + applet.panel3.cbg.getCurrent().getLabel());
+		textLabel29.setText("Volume of " + applet.panel3.cbg.getCurrent().getLabel());
 
 		textLabel24.setText(String.valueOf(((int) (applet.chem.Vol1 * 100.0)) / 100.0));
 		textLabel27.setText(String.valueOf(((int) (applet.chem.Mol2 * 100.0)) / 100.0));

@@ -3,7 +3,6 @@ package Titrate;
 import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -14,11 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class Introduction extends Panel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
-	private Label textLabel5, textLabel6, textLabel7, textLabel8;
+	private Label textLabel5, textLabel6, textLabel7;
 	public TextField textfield1;
 
 	public Introduction(Titrate applet) {
@@ -48,24 +51,15 @@ class Introduction extends Panel implements ActionListener {
 		textfield1 = new TextField("", 30);
 		textfield1.setBackground(new Color(255, 255, 255));
 		add(textfield1);
-		textLabel.setBounds(insets().left + 180, insets().top + 70, 400, 30);
-		// textLabel.reshape(insets().left+180, insets().top+70, 400, 30);
-		textLabel2.setBounds(insets().left + 80, insets().top + 130, 500, 20);
-		// textLabel2.reshape(insets().left+80, insets().top+130, 500, 20);
-		textLabel3.setBounds(insets().left + 80, insets().top + 150, 500, 20);
-		// textLabel3.reshape(insets().left+80, insets().top+150, 500, 20);
-		textLabel4.setBounds(insets().left + 80, insets().top + 170, 500, 20);
-		// textLabel4.reshape(insets().left+80, insets().top+170, 500, 20);
-		textLabel5.setBounds(insets().left + 80, insets().top + 190, 500, 20);
-		// textLabel5.reshape(insets().left+80, insets().top+190, 500, 20);
-		textLabel6.setBounds(insets().left + 80, insets().top + 210, 300, 20);
-		// textLabel6.reshape(insets().left+80, insets().top+210, 300, 20);
-		textLabel7.setBounds(insets().left + 170, insets().top + 260, 100, 20);
-		// textLabel7.reshape(insets().left+170, insets().top+260, 100, 20);
-		textfield1.setBounds(insets().left + 270, insets().top + 260, 160, 20);
-		// textfield1.reshape(insets().left+270, insets().top+260, 160, 20);
-		but2.setBounds(530 + insets().left, 360 + insets().top, 80, 20);
-		// but2.reshape(530 + insets().left, 360 + insets().top, 80, 20);
+		textLabel.setBounds(ins.left + 180, ins.top + 70, 400, 30);
+		textLabel2.setBounds(ins.left + 80, ins.top + 130, 500, 20);
+		textLabel3.setBounds(ins.left + 80, ins.top + 150, 500, 20);
+		textLabel4.setBounds(ins.left + 80, ins.top + 170, 500, 20);
+		textLabel5.setBounds(ins.left + 80, ins.top + 190, 500, 20);
+		textLabel6.setBounds(ins.left + 80, ins.top + 210, 300, 20);
+		textLabel7.setBounds(ins.left + 170, ins.top + 260, 100, 20);
+		textfield1.setBounds(ins.left + 270, ins.top + 260, 160, 20);
+		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
 
 	public void paint(Graphics g) {
@@ -73,26 +67,6 @@ class Introduction extends Panel implements ActionListener {
 			laidOut = true;
 		}
 	}
-/*
-	public boolean action(Event e, Object obje) {
-		Object source = e.target;
-		if (source == but2) {
-			if (textfield1.getText().trim().length() != 0) {
-				((CardLayout) applet.cards.getLayout()).next(applet.cards);
-			} else {
-				if (applet.dflag) {
-					applet.dflag = false;
-					applet.dlgLabel = new String("Please enter your name.");
-					applet.dlgLabel2 = new String("");
-					DlgW dlg = new DlgW(applet);
-					dlg.setSize(300, 200);
-					dlg.setVisible(true);
-				}
-			}
-		}
-		return super.action(e, obje);
-	}
-*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

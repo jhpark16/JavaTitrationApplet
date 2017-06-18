@@ -2,7 +2,6 @@ package Titrate;
 
 import java.applet.*;
 import java.awt.*;
-//import java.awt.image.*;
 
 /**
  * This class reads PARAM tags from its HTML host page and sets the color and
@@ -12,13 +11,52 @@ import java.awt.*;
 
 public class Titrate extends Applet implements Runnable {
 	/**
-	 * The entry point for the applet.
+	 * Serial Version UID for serialization
 	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The base panel for the titration applet
+	 */
+	public Panel cards;
+	/**
+	 * 8 sequential pages of titration dialogs
+	 */
+	Introduction panel1;
+	Flask panel2;
+	Buret panel3;
+	Indicator panel4;
+	Titration panel5;
+	pHCurve panel6;
+	Results panel7;
+	Certificate panel8;
+	/**
+	 * Variables related to the thread for animation.
+	 */
+	int frameNumber = -1;
+	Thread animatorThread;
+	int delay = 500;
+	
+	Label label1 = new Label();
+	/**
+	 * Some string variables
+	 */
+	private final String labelParam = "label";
+	public final String labelParam2 = "label2";
+	private final String backgroundParam = "background";
+	private final String foregroundParam = "foreground";
+	public String dlgLabel, dlgLabel2;
+	public Color gbgColor;
+	public boolean paintflag = true;
+
+	private boolean laidOut = false;
+
 	int nInterval = 1000;
 	public Chem chem = new Chem(this, nInterval + 2);
-	public String dlgLabel, dlgLabel2;
 	public boolean dflag = true, randflag = true;
 
+	/**
+	 * The entry point for the applet.
+	 */
 	public void init() {
 		// add(new JLabel("Look ma! No Menu!"));
 		Frame[] frames = Frame.getFrames();
@@ -42,14 +80,6 @@ public class Titrate extends Applet implements Runnable {
 		chem.InitTitration();
 		// TODO: Add any constructor code after initForm call.
 	}
-
-	Label label1 = new Label();
-	private final String labelParam = "label";
-	public final String labelParam2 = "label2";
-	private final String backgroundParam = "background";
-	private final String foregroundParam = "foreground";
-	public Color gbgColor;
-	public boolean paintflag = true;
 
 	/**
 	 * Reads parameters from the applet's HTML host and sets applet properties.
@@ -93,9 +123,6 @@ public class Titrate extends Applet implements Runnable {
 		 * Set the applet's string label, background color, and foreground
 		 * colors.
 		 */
-		// label1.setText(labelValue);
-		// label1.setBackground(stringToColor(backgroundValue));
-		// label1.setForeground(stringToColor(foregroundValue));
 		gbgColor = stringToColor(backgroundValue);
 		this.setBackground(stringToColor(backgroundValue));
 		this.setForeground(stringToColor(foregroundValue));
@@ -126,90 +153,66 @@ public class Titrate extends Applet implements Runnable {
 		return info;
 	}
 
-	public Panel cards;
-	Introduction pan1;
-	Flask pan2;
-	Buret pan3;
-	Indicator pan4;
-	Titration pan5;
-	pHCurve pan6;
-	Results pan7;
-	Certificate pan8;
-
-	private boolean laidOut = false;
-
 	/**
-	 * Intializes values for the applet and its components
+	 * Intializes panels and variables for the applet and its components
 	 */
 	void initForm() {
-		this.setLayout(null);
+		setLayout(null);
 		int width = 620, height = 390;
 		Insets ins = getInsets();
 		Rectangle r = new Rectangle(ins.left, ins.top, width, height);
 		cards = new Panel();
 		cards.setLayout(new CardLayout());
-		pan1 = new Introduction(this);
-		pan2 = new Flask(this);
-		pan3 = new Buret(this);
-		pan4 = new Indicator(this);
-		pan5 = new Titration(this);
-		pan6 = new pHCurve(this);
-		pan7 = new Results(this);
-		pan8 = new Certificate(this);
+		panel1 = new Introduction(this);
+		panel2 = new Flask(this);
+		panel3 = new Buret(this);
+		panel4 = new Indicator(this);
+		panel5 = new Titration(this);
+		panel6 = new pHCurve(this);
+		panel7 = new Results(this);
+		panel8 = new Certificate(this);
 		cards.setBounds(r);
 		// cards.reshape(insets().left, insets().top, 620, 390);
-		pan1.setBounds(r);
-		pan2.setBounds(r);
-		pan3.setBounds(r);
-		pan4.setBounds(r);
-		pan5.setBounds(r);
-		pan6.setBounds(r);
-		pan7.setBounds(r);
-		pan8.setBounds(r);
-		// pan1.reshape(insets().left, insets().top, 620, 390);
-		// pan2.reshape(insets().left, insets().top, 620, 390);
-		// pan3.reshape(insets().left, insets().top, 620, 390);
-		// pan4.reshape(insets().left, insets().top, 620, 390);
-		// pan5.reshape(insets().left, insets().top, 620, 390);
-		// pan6.reshape(insets().left, insets().top, 620, 390);
-		// pan7.reshape(insets().left, insets().top, 620, 390);
-		// pan8.reshape(insets().left, insets().top, 620, 390);
-		cards.add("P1", pan1);
-		cards.add("P2", pan2);
-		cards.add("P3", pan3);
-		cards.add("P4", pan4);
-		cards.add("P5", pan5);
-		cards.add("P6", pan6);
-		cards.add("P7", pan7);
-		cards.add("P8", pan8);
+		panel1.setBounds(r);
+		panel2.setBounds(r);
+		panel3.setBounds(r);
+		panel4.setBounds(r);
+		panel5.setBounds(r);
+		panel6.setBounds(r);
+		panel7.setBounds(r);
+		panel8.setBounds(r);
+		cards.add("P1", panel1);
+		cards.add("P2", panel2);
+		cards.add("P3", panel3);
+		cards.add("P4", panel4);
+		cards.add("P5", panel5);
+		cards.add("P6", panel6);
+		cards.add("P7", panel7);
+		cards.add("P8", panel8);
 		add(cards);
 	}
 
-	int frameNumber = -1;
-	Thread animatorThread;
-	int delay = 500;
-
+	/**
+	 * Start the thread for animation. The thread is used by run().  
+	 */
 	public void start() {
+		// Start the animating thread.
 		if (animatorThread == null) {
 			animatorThread = new Thread(this);
 		}
 		animatorThread.start();
 	}
-
+	/**
+	 * Stop the thread for animation.  
+	 */
 	public void stop() {
 		// Stop the animating thread.
 		animatorThread = null;
 	}
-
-	/*
-	 * public void methForApplet(){ AccessController .doPrivileged(new
-	 * PrivilegedExceptionAction<Object>() { public Object run() {
-	 * actualMethToBeExecuted(); return null; } }); }
+	/**
+	 * The animation thread calls this function.  
 	 */
 	public void run() {
-		// Just to be nice, lower this thread's priority
-		// so it can't interfere with other processing going on.
-		// Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 
 		// Remember the starting time.
 		long startTime = System.currentTimeMillis();
@@ -217,16 +220,21 @@ public class Titrate extends Applet implements Runnable {
 		// Remember which thread we are.
 		Thread currentThread = Thread.currentThread();
 
+		// Just to be nice, lower this thread's priority
+		// so it can't interfere with other processing going on.
+		currentThread.setPriority(Thread.MIN_PRIORITY);
+		
 		// This is the animation loop.
 		while (currentThread == animatorThread) {
 			// Advance the animation frame.
 			frameNumber++;
-			if (pan5 != null) {
-				pan5.timer();
+			if (panel5 != null) {
+				panel5.timer();
 			}
 
 			// Delay depending on how far we are behind.
 			try {
+				// Thread sleeps until the time reaches for the next frame.
 				startTime += delay;
 				Thread.sleep(Math.max(0, startTime - System.currentTimeMillis()));
 			} catch (InterruptedException e) {
