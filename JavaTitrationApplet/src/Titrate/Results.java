@@ -3,7 +3,6 @@ package Titrate;
 import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,6 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class Results extends Panel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1, but2, but3;
 	private boolean laidOut = false;
@@ -26,7 +29,7 @@ class Results extends Panel implements ActionListener {
 	public Label textLabel21, textLabel22, textLabel23, textLabel24;
 	public Label textLabel25, textLabel26, textLabel27, textLabel28;
 	private Label textLabel29, textLabel30, textLabel31, textLabel32;
-	private Label textLabel33, textLabel34, textLabel35, textLabel36;
+	private Label textLabel33, textLabel34, textLabel35;
 
 	private TextField textfield1;
 
@@ -120,7 +123,6 @@ class Results extends Panel implements ActionListener {
 		add(textLabel29);
 		textfield1 = new TextField("", 5);
 		textfield1.setBackground(new Color(255, 255, 255));
-		// textfield1.addActionListener(this);
 		add(textfield1);
 
 		textLabel30 = new Label("mL");
@@ -131,8 +133,6 @@ class Results extends Panel implements ActionListener {
 		textLabel32 = new Label(" ");
 		textLabel32.setAlignment(Label.RIGHT);
 		add(textLabel32);
-
-		// myImage = applet.getImage(applet.getCodeBase(),"results.gif");
 
 		textLabel.setBounds(20 + ins.left, 10 + ins.top, 580, 20);
 		textLabel2.setBounds(20 + ins.left, 30 + ins.top, 580, 20);
@@ -194,44 +194,7 @@ class Results extends Panel implements ActionListener {
 		textLabel24.setText(String.valueOf(((int) (applet.chem.Vol1 * 100.0)) / 100.0));
 		textLabel27.setText(String.valueOf(((int) (applet.chem.Mol2 * 100.0)) / 100.0));
 		g.drawRect(110, 75, 260, 40);
-		// g.drawImage(myImage, 400, 20, this);
-		// g.setXORMode(new Color(128,128,128));
-		// g.setColor(new Color(210,210,210));
-		// int i;
-		// for(i=0;i<200;i++)
-		// {
-		// g.drawLine(400,20+i,500,20+i);
-		// }
 	}
-
-	/*
-	 * public boolean imageUpdate(Image theimg, int infoflags,int x, int y, int
-	 * w, int h) { if ((infoflags & (ERROR)) != 0) { // errored = true; } if
-	 * ((infoflags & (WIDTH | HEIGHT)) != 0) { // positionImages(); } boolean
-	 * done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0); // Repaint
-	 * immediately if we are done, otherwise batch up // repaint requests every
-	 * 100 milliseconds repaint(done ? 0 : 100); return !done; //If done, no
-	 * further updates required. }
-	 */
-
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but2) { ((CardLayout)
-	 * applet.cards.getLayout()).next(applet.cards); } else if (source == but1)
-	 * { ((CardLayout) applet.cards.getLayout()).previous(applet.cards); } else
-	 * if (source == but3 || source == textfield1) { double TVal, TVol, tmp; tmp
-	 * = Double.valueOf(textfield1.getText()).doubleValue(); if (tmp > 0) { TVal
-	 * = applet.chem.Mol2 * tmp / applet.chem.Vol1; TVol = applet.chem.Molx *
-	 * applet.chem.Vol1 / applet.chem.Mol2;
-	 * textLabel19.setText(String.valueOf(((int) (TVal * 1000.0)) / 1000.0));
-	 * textLabel21.setText(String.valueOf(((int) (applet.chem.Molx * 1000.0)) /
-	 * 1000.0)); applet.chem.MErr = Math.abs(TVal - applet.chem.Molx) /
-	 * applet.chem.Molx * 100.0; textLabel22.setText(String.valueOf(((int)
-	 * (applet.chem.MErr * 10.0)) / 10.0));
-	 * textLabel31.setText(String.valueOf(((int) (TVol * 100.0)) / 100.0));
-	 * textLabel32.setText(String.valueOf(((int) (Math.abs(TVol - tmp) / TVol *
-	 * 10000.0)) / 100.0)); } else { // Beep } } return super.action(e, obje); }
-	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

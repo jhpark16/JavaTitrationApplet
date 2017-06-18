@@ -5,7 +5,6 @@ import java.awt.CardLayout;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -24,15 +23,18 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 class Buret extends Panel implements ActionListener, AdjustmentListener, ItemListener, FocusListener {
+	/**
+	 * version UID to verify the object data during deserialization
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Scrollbar slider, slider2;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
 	private Label textLabel5, textLabel6, textLabel7, textLabel8;
-	private Label textLabel9, textLabel10, textLabel11, textLabel12;
+	private Label textLabel9, textLabel10, textLabel11;
 	private Label textLabel13, textLabel14, textLabel15, textLabel16;
-	private Label textLabel17, textLabel18, textLabel19, textLabel20;
 	public Checkbox cb1, cb2, cb3;
 	public Checkbox cb4, cb5, cb6;
 	public CheckboxGroup cbg;
@@ -165,67 +167,6 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		// g.drawImage(myImage, 400, 20, this);
 	}
 
-	/*
-	 * public boolean imageUpdate(Image theimg, int infoflags,int x, int y, int
-	 * w, int h) { if ((infoflags & (ERROR)) != 0) { // errored = true; } if
-	 * ((infoflags & (WIDTH | HEIGHT)) != 0) { // positionImages(); } boolean
-	 * done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0); // Repaint
-	 * immediately if we are done, otherwise batch up // repaint requests every
-	 * 100 milliseconds repaint(done ? 0 : 100); return !done; //If done, no
-	 * further updates required. }
-	 */
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * double f; if (source == but2) { if
-	 * (applet.chem.AcidFlag1!=applet.chem.AcidFlag2) {
-	 * ((CardLayout)applet.cards.getLayout()).next(applet.cards); } else {
-	 * if(applet.dflag) { applet.dflag = false; applet.dlgLabel = new
-	 * String("You should select one acid and"); applet.dlgLabel2 = new
-	 * String("one base for titration."); DlgW dlg = new DlgW(applet);
-	 * dlg.setSize(300,200); dlg.setVisible(true); } } return true; } else if
-	 * (source == but1) {
-	 * ((CardLayout)applet.cards.getLayout()).previous(applet.cards); return
-	 * true; } else if (source == textfield1) { try { f =
-	 * (double)Double.valueOf(textfield1.getText()).doubleValue();
-	 * slider.setValue((int)(f*20)); } catch (java.lang.NumberFormatException
-	 * e2) { f = 0.2/20.0; } applet.chem.Mol2 = f; } else if (source ==
-	 * textfield2) { try { f =
-	 * (double)Double.valueOf(textfield2.getText()).doubleValue();
-	 * slider2.setValue((int)f); } catch (java.lang.NumberFormatException e2) {
-	 * f = 50.0; } applet.chem.Vol2 = f; } else if (source==cb1) {
-	 * applet.chem.K2 = 1e7; applet.chem.AcidFlag2 = true; } else if
-	 * (source==cb2) { applet.chem.K2 = 20.0; applet.chem.AcidFlag2 = true; }
-	 * else if (source==cb3) { applet.chem.K2 = 1.76e-5; applet.chem.AcidFlag2 =
-	 * true; } else if (source==cb4) { applet.chem.K2 = 1.6;
-	 * applet.chem.AcidFlag2 = false; } else if (source==cb5) { applet.chem.K2 =
-	 * 3.15; applet.chem.AcidFlag2 = false; } else if (source==cb6) {
-	 * applet.chem.K2 = 1.8e-5; applet.chem.AcidFlag2 = false; } else { return
-	 * super.action(e,obje); } applet.chem.InitTitration(); return true; }
-	 */
-	/*
-	 * public boolean lostFocus( Event e, Object obje ) { Object source =
-	 * e.target; double f; if (source == textfield1) { try { f =
-	 * (double)Double.valueOf(textfield1.getText()).doubleValue();
-	 * slider.setValue((int)(f*20)); } catch (java.lang.NumberFormatException
-	 * e2) { f = 0.2/20.0; } applet.chem.Mol2 = f; } else if (source ==
-	 * textfield2) { try { f =
-	 * (double)Double.valueOf(textfield2.getText()).doubleValue();
-	 * slider2.setValue((int)f); } catch (java.lang.NumberFormatException e2) {
-	 * f = 50.0; } applet.chem.Vol2 = f; } else return super.lostFocus(e,obje);
-	 * applet.chem.InitTitration(); return true; }
-	 */
-	/*
-	 * public boolean handleEvent(Event e) { Object source = e.target; if
-	 * (source==slider) {
-	 * textfield1.setText(String.valueOf(slider.getValue()/20.0));
-	 * applet.chem.Mol2 = (double)
-	 * Double.valueOf(textfield1.getText()).doubleValue(); } else if
-	 * (source==slider2) {
-	 * textfield2.setText(String.valueOf(slider2.getValue()/1.0));
-	 * applet.chem.Vol2 = (double)
-	 * Double.valueOf(textfield2.getText()).doubleValue(); } else { return
-	 * super.handleEvent(e); } applet.chem.InitTitration(); return true; }
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -316,7 +257,6 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 	public void itemStateChanged(ItemEvent arg0) {
 		// TODO Auto-generated method stub
 		Object source = arg0.getSource();
-		double f;
 		if (source == cb1) {
 			applet.chem.K2 = 1e7;
 			applet.chem.AcidFlag2 = true;

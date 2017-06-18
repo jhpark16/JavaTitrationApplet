@@ -3,7 +3,6 @@ package Titrate;
 import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,14 +13,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class pHCurve extends Panel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
 	private Label textLabel5, textLabel6, textLabel7, textLabel8;
-	private Label textLabel9, textLabel10, textLabel11, textLabel12;
+	private Label textLabel9, textLabel11, textLabel12;
 	private Label textLabel13, textLabel14, textLabel15, textLabel16;
-	private Label textLabel17, textLabel18, textLabel19, textLabel20;
+	private Label textLabel17, textLabel18;
 
 	public Image myImage;
 
@@ -55,8 +58,6 @@ class pHCurve extends Panel implements ActionListener {
 		add(textLabel8);
 		textLabel9 = new Label("for the equivalence point.");
 		add(textLabel9);
-		// textLabel10 = new Label("equivalence point");
-		// add(textLabel10);
 		textLabel11 = new Label("Step 5. This titration curve is");
 		add(textLabel11);
 		textLabel12 = new Label("made from your lab data.");
@@ -73,8 +74,6 @@ class pHCurve extends Panel implements ActionListener {
 		add(textLabel15);
 		textLabel16 = new Label("mL");
 		add(textLabel16);
-		// myImage = applet.getImage(applet.getCodeBase(),"bigimg.gif");
-
 		textLabel.setBounds(20 + ins.left, 10 + ins.top, 250, 20);
 		textLabel2.setBounds(20 + ins.left, 30 + ins.top, 250, 20);
 		textLabel3.setBounds(20 + ins.left, 50 + ins.top, 250, 20);
@@ -84,7 +83,6 @@ class pHCurve extends Panel implements ActionListener {
 		textLabel7.setBounds(20 + ins.left, 130 + ins.top, 250, 20);
 		textLabel8.setBounds(20 + ins.left, 150 + ins.top, 250, 20);
 		textLabel9.setBounds(20 + ins.left, 170 + ins.top, 250, 20);
-		// textLabel10.setBounds(20 + ins.left, 190 + ins.top, 250, 20);
 		textLabel11.setBounds(20 + ins.left, 230 + ins.top, 250, 20);
 		textLabel12.setBounds(60 + ins.left, 250 + ins.top, 230, 20);
 		textLabel13.setBounds(60 + ins.left, 270 + ins.top, 230, 20);
@@ -109,9 +107,6 @@ class pHCurve extends Panel implements ActionListener {
 		if (!laidOut) {
 			laidOut = true;
 		}
-		// g.drawImage(myImage, 400, 20, this);
-		// g.setXORMode(new Color(128,128,128));
-		// g.setColor(new Color(210,210,210));
 		int i;
 		for (i = 0; i <= 50; i = i + 10) {
 			g.setColor(new Color(0, 0, 0));
@@ -135,24 +130,6 @@ class pHCurve extends Panel implements ActionListener {
 		}
 	}
 
-	/*
-	 * public boolean imageUpdate(Image theimg, int infoflags,int x, int y, int
-	 * w, int h) { if ((infoflags & (ERROR)) != 0) { // errored = true; } if
-	 * ((infoflags & (WIDTH | HEIGHT)) != 0) { // positionImages(); } boolean
-	 * done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0); // Repaint
-	 * immediately if we are done, otherwise batch up // repaint requests every
-	 * 100 milliseconds repaint(done ? 0 : 100); return !done; //If done, no
-	 * further updates required. }
-	 */
-
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but2) {
-	 * ((CardLayout)applet.cards.getLayout()).next(applet.cards); } else if
-	 * (source == but1) {
-	 * ((CardLayout)applet.cards.getLayout()).previous(applet.cards); } return
-	 * super.action(e,obje); }
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

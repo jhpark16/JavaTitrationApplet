@@ -2,7 +2,6 @@ package Titrate;
 
 import java.awt.Button;
 import java.awt.CardLayout;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,12 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class Certificate extends Panel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1;
 	private boolean laidOut = false;
-	private Scrollbar slider, slider2;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
-	private Label textLabel5, textLabel6, textLabel7, textLabel8;
+	private Label textLabel5, textLabel6;
 
 	public Image myImage;
 
@@ -76,22 +78,6 @@ class Certificate extends Panel implements ActionListener {
 		// g.drawImage(myImage, 400, 20, this);
 	}
 
-	/*
-	 * public boolean imageUpdate(Image theimg, int infoflags,int x, int y, int
-	 * w, int h) { if ((infoflags & (ERROR)) != 0) { // errored = true; } if
-	 * ((infoflags & (WIDTH | HEIGHT)) != 0) { // positionImages(); } boolean
-	 * done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0); // Repaint
-	 * immediately if we are done, otherwise batch up // repaint requests every
-	 * 100 milliseconds repaint(done ? 0 : 100); return !done; //If done, no
-	 * further updates required. }
-	 */
-
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but1) {
-	 * ((CardLayout)applet.cards.getLayout()).previous(applet.cards); } return
-	 * super.action(e,obje); }
-	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

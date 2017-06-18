@@ -4,14 +4,12 @@ import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,12 +17,15 @@ import java.awt.event.ItemListener;
 import java.net.URL;
 
 class Indicator extends Panel implements ActionListener, ItemListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
-	private Label textLabel5, textLabel6, textLabel7, textLabel8;
-	private Label textLabel9, textLabel10;
+	private Label textLabel5;
 	private Checkbox cb1, cb2, cb3, cb4;
 	private CheckboxGroup cbg;
 
@@ -69,18 +70,6 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		cb4.setBackground(applet.gbgColor);
 		cb4.addItemListener(this);
 		add(cb4);
-		// String test2 = getClass().getResource("indicator.gif").getPath();
-		// URL test =
-		// getClass().getResource("/Titration/resources/indicator.gif");
-		// URL url =
-		// getClass().getClass().getClassLoader().getResource("resources/indicator.gif");
-		// if (url != null)
-		// myImage = Toolkit.getDefaultToolkit().getImage(url);
-		// URL t = Titrate.class.getResource();
-		// myImage = applet.getImage(t);
-		// myImage =
-		// applet.getImage(Titrate.class.getResource("Titration/resources/indicator.gif"));
-		// myImage = applet.getImage(applet.getCodeBase(),"");
 		URL t1 = applet.getCodeBase();
 		myImage = applet.getImage(t1, "resources/indicator.gif");
 		Insets ins = this.getInsets();
@@ -104,37 +93,6 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		}
 		g.drawImage(myImage, 185, 160, this);
 	}
-
-	// public boolean imageUpdate(Image theimg,
-	// int infoflags,int x, int y, int w, int h)
-	// {
-	// if ((infoflags & (ERROR)) != 0)
-	// {
-	// errored = true;
-	// }
-	// if ((infoflags & (WIDTH | HEIGHT)) != 0)
-	// {
-	// positionImages();
-	// }
-	// boolean done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0);
-	// Repaint immediately if we are done, otherwise batch up
-	// repaint requests every 100 milliseconds
-	// repaint(done ? 0 : 100);
-	// return !done; //If done, no further updates required.
-	// }
-
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but2) { ((CardLayout)
-	 * applet.cards.getLayout()).next(applet.cards); return super.action(e,
-	 * obje); } else if (source == but1) { ((CardLayout)
-	 * applet.cards.getLayout()).previous(applet.cards); return super.action(e,
-	 * obje); } else if (source == cb1) { applet.chem.IIndicator = 0; } else if
-	 * (source == cb2) { applet.chem.IIndicator = 1; } else if (source == cb3) {
-	 * applet.chem.IIndicator = 2; } else if (source == cb4) {
-	 * applet.chem.IIndicator = 3; } else { return super.action(e, obje); }
-	 * applet.chem.InitTitration(); return super.action(e, obje); }
-	 */
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {

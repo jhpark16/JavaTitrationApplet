@@ -3,7 +3,6 @@ package Titrate;
 import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -18,6 +17,10 @@ import java.awt.event.AdjustmentListener;
 import java.net.URL;
 
 class Titration extends Panel implements ActionListener, AdjustmentListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Titrate applet;
 	private Button but1, but2, but3, but4;
 	private boolean laidOut = false;
@@ -43,7 +46,6 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	Color IColor;
 
 	private void SolveH2O(Chem ch)
-	// double CH, double COH)
 	{
 		double x, sumhoh;
 		sumhoh = ch.COH + ch.CH;
@@ -112,7 +114,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	}
 
 	private double CalcPH(Chem ch) {
-		int i, j, k;
+		int i;
 		boolean Flag1;
 		double tolconc;
 		double PConcH, PConcOH, PConcAcidIon, PConcAcid;
@@ -186,7 +188,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	}
 
 	private void Picture1_Paint(Graphics g) {
-		int DM1, i, ix, iy;
+		int i, ix, iy;
 		Color savedColor;
 		savedColor = g.getColor();
 		if (applet.paintflag) {
@@ -388,26 +390,6 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		Timer1_Timer();
 	}
 
-	/*
-	 * public boolean imageUpdate(Image theimg, int infoflags,int x, int y, int
-	 * w, int h) { if ((infoflags & (ERROR)) != 0) { // errored = true; } if
-	 * ((infoflags & (WIDTH | HEIGHT)) != 0) { // positionImages(); } boolean
-	 * done = ((infoflags & (ERROR | FRAMEBITS | ALLBITS)) != 0); // Repaint
-	 * immediately if we are done, otherwise batch up // repaint requests every
-	 * 100 milliseconds repaint(done ? 0 : 100); return !done; //If done, no
-	 * further updates required. }
-	 */
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but2) { slider.setValue(0);
-	 * ((CardLayout)applet.cards.getLayout()).next(applet.cards); } else if
-	 * (source == but1) { slider.setValue(0);
-	 * ((CardLayout)applet.cards.getLayout()).previous(applet.cards); } else if
-	 * (source == but3) { if (slider.getValue()>0) slider.setValue(0); else
-	 * slider.setValue(4); } else if (source == but4) { slider.setValue(0);
-	 * but3.setLabel("Start"); applet.chem.InitTitration(); Timer1_Timer(); }
-	 * return super.action(e, obje); }
-	 */
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent arg0) {
 		// TODO Auto-generated method stub
@@ -417,7 +399,6 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			// applet.chem.Mol2 = (double)
 			// Double.valueOf(textfield1.getText()).doubleValue();
 		}
-		// applet.chem.InitTitration();
 	}
 
 	@Override

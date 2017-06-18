@@ -1,7 +1,6 @@
 package Titrate;
 
 import java.awt.Button;
-import java.awt.Event;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -12,28 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class DlgW extends Frame implements ActionListener {
-	private boolean inAnApplet = true;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean laidOut = false;
 	Panel cPanel;
 	Label label1, label2;
 	Button but1;
 	Titrate obj1;
-
-	// class WinAd1 extends WindowAdapter
-	// {
-	// public void windowClosing(Event e)
-	// {
-	// if (inAnApplet)
-	// {
-	// dispose();
-	// obj1.dflag = true;
-	// }
-	// else
-	// {
-	// System.exit(0);
-	// }
-	// }
-	// }
 
 	public DlgW(Titrate obj1) {
 		this.obj1 = obj1;
@@ -51,9 +37,6 @@ class DlgW extends Frame implements ActionListener {
 		cPanel.add(label2);
 		cPanel.add(but1);
 		add(cPanel);
-
-		// WinAd1 winad1 = new WinAd1();
-		// addWindowListener(winad1);
 	}
 
 	public void paint(Graphics g) {
