@@ -1,5 +1,5 @@
 # Java Applet for Acid-Base Titration
-This is a Java applet of a virtual chemistry experiment for a web page. This Eclipse project simulates a simple acid-base titration.
+This is a Java applet of a virtual chemistry experiment for a web page. This applet simulates a simple acid-base titration.
 
 ## Generation of Titrate.jar file
 The compiled code needs to be packaged as a Titrate.jar file if it is to be used for a web page.<br>
@@ -8,7 +8,7 @@ The compiled code needs to be packaged as a Titrate.jar file if it is to be used
 (3) Choose src and resource under JavaTitrationApplet. Unselect all the other files on the righthand panel. Click "Finish".
 
 ## Using this applet in a web page
-The Titration.html shows how the applet is used in a web page. The web page should be run locally (due to security issues) and installed on a web site. 
+The Titration.html shows how the applet is used in a web page. The web page cannot be run locally (due to security issues) and should be placed on a web site. 
 
 ## Applet structure
 The applet is composed of 8 sequential panels of dialogue.
@@ -31,10 +31,10 @@ Solution #1 is in the conical flask and solution #2 is in the burette. You open 
 This panel shows how the pH changed during the titration. The pH vs volume curve is steepest around the endpoint, which means the volume of solution #2 at the endpoint can be read off of the pH vs volume graph.
 
 7. Calculating the concentration of unknown solution #1<br>
-Using the volume of solution #1 and #2 and the concentration of #2, the concentration of solution #1 can be calculated. Use the data obtained from this panel and the previous panel (panels 6 and 7).
+Using the volume of solution #1 and #2 and the concentration of #2, the concentration of solution #1 can be calculated. Use the data obtained from the previous panels (panels 5 and 6).
 
 8. Certificate of titration performance<br>
-This page shows the certificate of your virtual titration experiment.
+This page shows the certificate of your virtual titration experiment. The certificate changes by the accuracy of the titration result.
   
 ## License
 JavaTitrationApplet is licensed under <B>the MIT License</B> - see the `LICENSE` file for details.
