@@ -13,12 +13,18 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The calculation of the concentration of unknown solution (#1)
+ * 
+ * @author Jungho Park
+ *
+ */
 class Results extends Panel implements ActionListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1, but2, but3;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
@@ -35,7 +41,12 @@ class Results extends Panel implements ActionListener {
 
 	public Image myImage;
 
-	public Results(Titrate applet) {
+	/**
+	 * manually places controls
+	 * 
+	 * @param applet
+	 */
+	public Results(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -182,6 +193,9 @@ class Results extends Panel implements ActionListener {
 		but3.setBounds(420 + ins.left, 275 + ins.top, 80, 20);
 	}
 
+	/**
+	 * paint sets the locations of some controls
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
@@ -196,6 +210,9 @@ class Results extends Panel implements ActionListener {
 		g.drawRect(110, 75, 260, 40);
 	}
 
+	/**
+	 * an event handler for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

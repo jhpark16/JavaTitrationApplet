@@ -4,44 +4,48 @@ import java.applet.*;
 import java.awt.*;
 
 /**
- * This is the main Applet class and the execution begins with the init() method.
+ * This is the main Applet class and the execution begins with init() method.
  * 
- * All classes are placed in the package Titrate.
- * 
- * This class reads PARAM tags from its HTML host page and sets the color and
- * label properties of the applet. 
+ * This class reads PARAM tags from its HTML host page and sets the foreground,
+ * background, label and label2 properties of the applet.
  */
 
-public class Titrate extends Applet implements Runnable {
+public class Main extends Applet implements Runnable {
+
 	/**
 	 * Serial Version UID to verify the data during deserialization
 	 */
 	private static final long serialVersionUID = 1L;
+
 	/**
-	 * The base panel that holds 8 titration dialog panels. 
+	 * The base panel that holds 8 titration dialog panels.
 	 */
 	public Panel cards;
+
 	/**
 	 * 8 sequential pages of titration dialogs.
 	 */
 	Introduction panel1;
-	Flask panel2;
-	Buret panel3;
+	Solution1 panel2;
+	Solution2 panel3;
 	Indicator panel4;
 	Titration panel5;
 	pHCurve panel6;
 	Results panel7;
 	Certificate panel8;
+
 	/**
 	 * Variables for an animation thread.
 	 */
 	int frameNumber = -1;
 	Thread animatorThread;
 	int delay = 500;
+
 	/**
 	 * Variables for an animation thread.
 	 */
 	Label label1 = new Label();
+
 	/**
 	 * Some string variables
 	 */
@@ -66,7 +70,7 @@ public class Titrate extends Applet implements Runnable {
 			frame.pack();
 		}
 		usePageParams();
-		// Initialize all forms		
+		// Initialize all forms
 		initForm();
 		// Initialize the default concentrations and volumes of solutions
 		// for an chemistry object
@@ -88,6 +92,7 @@ public class Titrate extends Applet implements Runnable {
 	private final String labelParam2 = "label2";
 	private final String backgroundParam = "background";
 	private final String foregroundParam = "foreground";
+
 	/**
 	 * Reads parameters from the applet's HTML host and sets applet properties.
 	 */
@@ -113,8 +118,7 @@ public class Titrate extends Applet implements Runnable {
 		backgroundValue = getParameter(backgroundParam);
 		foregroundValue = getParameter(foregroundParam);
 
-		if ((labelValue == null) || (backgroundValue == null) || 
-				(labelValue2 == null) || (foregroundValue == null)) {
+		if ((labelValue == null) || (backgroundValue == null) || (labelValue2 == null) || (foregroundValue == null)) {
 			/**
 			 * If there was something wrong with the HTML host tags, generate
 			 * default values.
@@ -125,8 +129,7 @@ public class Titrate extends Applet implements Runnable {
 			foregroundValue = defaultForeground;
 		}
 		/*
-		 * If the string value of PARAM label2 is "PaintMode"
-		 * turn on paintflag.
+		 * If the string value of PARAM label2 is "PaintMode" turn on paintflag.
 		 */
 		if (labelValue2.equalsIgnoreCase("PaintMode")) {
 			paintflag = true;
@@ -173,13 +176,14 @@ public class Titrate extends Applet implements Runnable {
 	void initForm() {
 		setLayout(null);
 		int width = 620, height = 390;
+		setSize(width, height);
 		Insets ins = getInsets();
 		Rectangle r = new Rectangle(ins.left, ins.top, width, height);
 		cards = new Panel();
 		cards.setLayout(new CardLayout());
 		panel1 = new Introduction(this);
-		panel2 = new Flask(this);
-		panel3 = new Buret(this);
+		panel2 = new Solution1(this);
+		panel3 = new Solution2(this);
 		panel4 = new Indicator(this);
 		panel5 = new Titration(this);
 		panel6 = new pHCurve(this);
@@ -207,7 +211,7 @@ public class Titrate extends Applet implements Runnable {
 	}
 
 	/**
-	 * Start the thread for animation. The thread is used by run().  
+	 * Start the thread for animation. The thread is used by run().
 	 */
 	public void start() {
 		// Start the animating thread.
@@ -216,15 +220,17 @@ public class Titrate extends Applet implements Runnable {
 		}
 		animatorThread.start();
 	}
+
 	/**
-	 * Stop the thread for animation.  
+	 * Stop the thread for animation.
 	 */
 	public void stop() {
 		// Stop the animating thread.
 		animatorThread = null;
 	}
+
 	/**
-	 * The animation thread calls this function.  
+	 * The animation thread calls this function.
 	 */
 	public void run() {
 
@@ -237,7 +243,7 @@ public class Titrate extends Applet implements Runnable {
 		// Just to be nice, lower this thread's priority
 		// so it can't interfere with other processing going on.
 		currentThread.setPriority(Thread.MIN_PRIORITY);
-		
+
 		// This is the animation loop.
 		while (currentThread == animatorThread) {
 			// Advance the animation frame.
@@ -257,6 +263,9 @@ public class Titrate extends Applet implements Runnable {
 		}
 	}
 
+	/**
+	 * paint function
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;

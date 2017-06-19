@@ -12,20 +12,31 @@ import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Certificate (page 8)
+ * 
+ * @author Jungho Park
+ *
+ */
 class Certificate extends Panel implements ActionListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
 	private Label textLabel5, textLabel6;
 
-	public Image myImage;
-
-	public Certificate(Titrate applet) {
+	// public Image myImage;
+	/**
+	 * manually places all controls
+	 * 
+	 * @param applet:
+	 *            main applet
+	 */
+	public Certificate(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -60,6 +71,10 @@ class Certificate extends Panel implements ActionListener {
 		but1.setBounds(440 + ins.left, 360 + ins.top, 80, 20);
 	}
 
+	/**
+	 * The text in the certificate varies by the accuracy of the unknown
+	 * solution
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 
@@ -78,6 +93,9 @@ class Certificate extends Panel implements ActionListener {
 		// g.drawImage(myImage, 400, 20, this);
 	}
 
+	/**
+	 * an event handler for a button
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

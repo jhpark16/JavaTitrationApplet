@@ -10,18 +10,29 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A dialog box to show information
+ * 
+ * @author Jungho Park
+ *
+ */
 class DlgW extends Frame implements ActionListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean laidOut = false;
 	Panel cPanel;
 	Label label1, label2;
 	Button but1;
-	Titrate obj1;
+	Main obj1;
 
-	public DlgW(Titrate obj1) {
+	/**
+	 * manually places controls
+	 * 
+	 * @param obj1
+	 */
+	public DlgW(Main obj1) {
 		this.obj1 = obj1;
 		setLayout(null);
 		Insets ins = this.getInsets();
@@ -39,6 +50,9 @@ class DlgW extends Frame implements ActionListener {
 		add(cPanel);
 	}
 
+	/**
+	 * set the locations of the controls
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			Insets ins = this.getInsets();
@@ -50,10 +64,8 @@ class DlgW extends Frame implements ActionListener {
 		}
 	}
 
-	/*
-	 * public boolean action(Event e, Object obje) { Object source = e.target;
-	 * if (source == but1) { dispose(); obj1.dflag =true; } return
-	 * super.action(e,obje); }
+	/**
+	 * An event handler for a button
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

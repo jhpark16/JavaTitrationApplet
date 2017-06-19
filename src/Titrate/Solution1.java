@@ -20,12 +20,18 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-class Flask extends Panel implements ActionListener, AdjustmentListener, ItemListener {
+/**
+ * Solution #1 in the flask (page 2)
+ * 
+ * @author Jungho Park
+ *
+ */
+class Solution1 extends Panel implements ActionListener, AdjustmentListener, ItemListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Scrollbar slider, slider2;
@@ -40,7 +46,12 @@ class Flask extends Panel implements ActionListener, AdjustmentListener, ItemLis
 
 	public Image myImage;
 
-	public Flask(Titrate applet) {
+	/**
+	 * manually places controls
+	 * 
+	 * @param applet
+	 */
+	public Solution1(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -161,10 +172,12 @@ class Flask extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		textLabel11.setBounds(390 + ins.left, 345 + ins.top, 40, 20);
 		but1.setBounds(440 + ins.left, 360 + ins.top, 80, 20);
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
-
 		// myImage = applet.getImage(applet.getCodeBase(),"titration.gif");
 	}
 
+	/**
+	 * Draw boxes to separate the area
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
@@ -175,6 +188,9 @@ class Flask extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		// g.drawImage(myImage, 400, 20, this);
 	}
 
+	/**
+	 * An event handler for combo boxes
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		// TODO Auto-generated method stub
@@ -209,6 +225,9 @@ class Flask extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		applet.chem.InitTitration();
 	}
 
+	/**
+	 * an event handler for a slider
+	 */
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent arg0) {
 		// TODO Auto-generated method stub
@@ -226,6 +245,9 @@ class Flask extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		applet.chem.InitTitration();
 	}
 
+	/**
+	 * an event handler for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

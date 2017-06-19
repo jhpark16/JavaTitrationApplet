@@ -15,8 +15,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.net.URL;
+
 /**
- * A burette and a flask setup for acid-base titration. 
+ * A burette and a flask setup for acid-base titration.
+ * 
  * @author Jungho Park
  *
  */
@@ -25,7 +27,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	 * local control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1, but2, but3, but4;
 	private boolean laidOut = false;
 	private Scrollbar slider;
@@ -38,7 +40,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 	// Image for titration setup
 	public Image mFlask;
 
-	double FlaskL[], FlaskR[], TotalVol;
+	double TotalVol;
 	// Flash shape in 2D
 	static double[][] Flask2 = { { 39, 74 }, { 37, 76 }, { 36, 77 }, { 35, 78 }, { 35, 78 }, { 34, 79 }, { 34, 79 },
 			{ 34, 79 }, { 34, 79 }, { 34, 79 }, { 34, 79 }, { 35, 79 }, { 35, 78 }, { 35, 78 }, { 35, 78 }, { 35, 78 },
@@ -49,13 +51,14 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			{ 45, 68 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 46, 67 }, { 47, 66 },
 			{ 47, 66 } };
 	Color IColor;
-	
+
 	/**
 	 * Calculate water reaction
-	 * @param ch: chemistry class object
+	 * 
+	 * @param ch:
+	 *            chemistry class object
 	 */
-	private void SolveH2O(Chem ch)
-	{
+	private void SolveH2O(Chem ch) {
 		double x, sumhoh;
 		sumhoh = ch.COH + ch.CH;
 		x = (sumhoh - Math.sqrt(sumhoh * sumhoh - 4.0 * (ch.CH * ch.COH - 1e-14))) / 2.0;
@@ -71,11 +74,15 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			}
 		}
 	}
-	
+
 	/**
-	 * Simulate acid/base reactions and evaluate the remaining amount of H+ and OH- ions.
-	 * @param ch: chemistry obj
-	 * @param iflag: if it is 1, solution #1 is acid
+	 * Simulate acid/base reactions and evaluate the remaining amount of H+ and
+	 * OH- ions.
+	 * 
+	 * @param ch:
+	 *            chemistry obj
+	 * @param iflag:
+	 *            if it is 1, solution #1 is acid
 	 */
 	private void SolveAcidBase(Chem ch, int iflag) {
 		double C, CIon, CH_OH, KEq;
@@ -126,10 +133,12 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			ch.COH = CH_OH;
 		}
 	}
-	
+
 	/**
 	 * Calculate the pH of the solution in a chemistry object
-	 * @param ch: chemistry class object
+	 * 
+	 * @param ch:
+	 *            chemistry class object
 	 * @return: calculated pH of the chemical system
 	 */
 	private double CalcPH(Chem ch) {
@@ -159,9 +168,10 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		}
 		return (-Math.log(ch.CH) / Math.log(10.0));
 	}
-	
+
 	/**
 	 * Set the variable IColor to the indicator colour as a function of pH
+	 * 
 	 * @param tpH
 	 */
 	private void SetIColor(double tpH) {
@@ -209,7 +219,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 				IColor = new Color(255, 0, 0);
 		}
 	}
-	
+
 	/**
 	 * Draw the liquid level of the solution #1 and #2
 	 */
@@ -244,10 +254,10 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		g.setColor(savedColor);
 	}
 
-    /** 
-     * Setup all controls and manually place them.
-     */
-	public Titration(Titrate applet) {
+	/**
+	 * Setup all controls and manually place them.
+	 */
+	public Titration(Main applet) {
 		super();
 		this.applet = applet;
 		Insets ins = getInsets();
@@ -347,17 +357,18 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		but1.setBounds(440 + ins.left, 360 + ins.top, 80, 20);
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
-	
-    /**
-     * Draws the image of titration equipment and the liquid level
-     * @see java.awt.Container#paint(java.awt.Graphics)
-     */
+
+	/**
+	 * Draws the image of titration equipment and the liquid level
+	 * 
+	 * @see java.awt.Container#paint(java.awt.Graphics)
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
 		}
 		textLabel11.setText(String.valueOf(((int) (applet.chem.Vol2 * 100.0)) / 100.0));
-		// Draw boxes around the scrollbar and input box 
+		// Draw boxes around the scrollbar and input box
 		g.drawRect(30, 150, 255, 95);
 		g.drawRect(30, 260, 255, 95);
 		// Draw the image of a burette and flask
@@ -366,9 +377,9 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		Picture1_Paint(g);
 	}
 
-    /**
-     * The animation thread will call this function every 500 msec. 
-     */
+	/**
+	 * The animation thread will call this function every 500 msec.
+	 */
 	public void timer() {
 		double tpH, PVol, DiffVol;
 		int tmp;
@@ -439,11 +450,13 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 			// Double.valueOf(textfield1.getText()).doubleValue();
 		}
 	}
-	
-    /*
-     * Process button and control clicks
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-     */
+
+	/*
+	 * Process button and control clicks
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

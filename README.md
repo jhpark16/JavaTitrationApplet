@@ -1,9 +1,6 @@
 # Java Applet for Acid-Base Titration
-This is an Java applet of a virtual chemistry experiment for a web page.
-This is a Java project using Eclipse IDE.  
-An Eclipse Java A simple acid-base titration is simulated.
-A Java applet simulating acid base titration experiment for a web page.
-I was written using the initial Java Applet 
+This is an Java applet of a virtual chemistry experiment for a web page. This is an Eclipse project. A simple acid-base titration is simulated.
+A Java applet simulating an experiment of acid base titration for a web page. 
 
 ## Generation of Titrate.jar file
 The compiled code needs to be packaged as Titrate.jar file to be used for a web page.<br>
@@ -34,12 +31,13 @@ You choose an indicator for the titration here. The colours of the indicators as
 Solution #1 is in the erlenmeyer flask and solution #2 is in the burette. You open the pinchvalve of the burette by pressing "Start" button. You can adjust the flow rate by changing the horizontal scroll bar. Your goal is to stop the flow at the endpoint of the titration. If you want to restart the titration, press "Titrate again" button. Record the amount of solution #2 used for the titration to calculate the concentration of the unknown solution (Solution #1).
 
 6. A graph showing the pH of the solution as a function of the amount of solution #2 used<br>
-This panel shows how the pH changes during the titration. 
+This panel shows how the pH changes during the titration. The volume of solution #2 at the endpoint is when the slope of the pH vs volume is the largest.
 
 7. The calculation of the concentration of unknown solution #1<br>
+With the volume of solution #1 and #2 and the concentration of #2, the concentration of solution #1 can be calculated. Use the data obtained from pages 6 and 7.  
 
 8. Certificate of titration performance<br>
 This page shows the certificate of your virtual titration experiment.
   
 ## License
-JavaTitrationApplet is licensed under the MIT License - see the `LICENSE` file for details.
+JavaTitrationApplet is licensed under <B>the MIT License</B> - see the `LICENSE` file for details.

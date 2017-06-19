@@ -22,12 +22,20 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-class Buret extends Panel implements ActionListener, AdjustmentListener, ItemListener, FocusListener {
+/**
+ * 
+ * @author Jungho Park
+ *
+ */
+class Solution2 extends Panel implements ActionListener, AdjustmentListener, ItemListener, FocusListener {
 	/**
 	 * version UID to verify the object data during deserialization
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	/*
+	 * control variables
+	 */
+	Main applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Scrollbar slider, slider2;
@@ -42,7 +50,12 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 
 	public Image myImage;
 
-	public Buret(Titrate applet) {
+	/**
+	 * Solution #2 in the burette manually places controls
+	 * 
+	 * @param applet
+	 */
+	public Solution2(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -157,6 +170,9 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		// myImage = applet.getImage(applet.getCodeBase(),"bigimg.gif");
 	}
 
+	/**
+	 * draw rectangles to separate the area
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 
@@ -167,6 +183,9 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		// g.drawImage(myImage, 400, 20, this);
 	}
 
+	/**
+	 * an event handler for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -207,6 +226,9 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		applet.chem.InitTitration();
 	}
 
+	/**
+	 * an event handler for sliders
+	 */
 	@Override
 	public void adjustmentValueChanged(AdjustmentEvent arg0) {
 		// TODO Auto-generated method stub
@@ -221,12 +243,18 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 		applet.chem.InitTitration();
 	}
 
+	/**
+	 * focus gained
+	 */
 	@Override
 	public void focusGained(FocusEvent arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * an event handler when focus is lost from controls updates the variables
+	 * attached to the controls
+	 */
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		// TODO Auto-generated method stub
@@ -252,7 +280,9 @@ class Buret extends Panel implements ActionListener, AdjustmentListener, ItemLis
 			applet.chem.InitTitration();
 	}
 
-	
+	/**
+	 * an event handler for combo boxes
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		// TODO Auto-generated method stub

@@ -12,19 +12,30 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Introduction (page 1)
+ * 
+ * @author Jungho Park
+ *
+ */
 class Introduction extends Panel implements ActionListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
 	private Label textLabel5, textLabel6, textLabel7;
 	public TextField textfield1;
 
-	public Introduction(Titrate applet) {
+	/**
+	 * manually places controls
+	 * 
+	 * @param applet
+	 */
+	public Introduction(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -62,11 +73,18 @@ class Introduction extends Panel implements ActionListener {
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
 
+	/**
+	 * paint function
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
 		}
 	}
+
+	/**
+	 * an event hanlder for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

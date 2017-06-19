@@ -12,12 +12,18 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Draw pH curve as a function of the amount of reacted solution
+ * 
+ * @author Jungho Park
+ *
+ */
 class pHCurve extends Panel implements ActionListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
@@ -28,7 +34,12 @@ class pHCurve extends Panel implements ActionListener {
 
 	public Image myImage;
 
-	public pHCurve(Titrate applet) {
+	/**
+	 * manually places controls
+	 * 
+	 * @param applet
+	 */
+	public pHCurve(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -95,14 +106,31 @@ class pHCurve extends Panel implements ActionListener {
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
 
+	/**
+	 * X scale/translation function
+	 * 
+	 * @param x
+	 * @return
+	 */
 	private int X(double x) {
 		return ((int) (x * 5.5 + 325.0));
 	}
 
+	/**
+	 * Y scale/translation function
+	 * 
+	 * @param y
+	 * @return
+	 */
 	private int Y(double y) {
 		return ((int) (-y * 20.0 + 300.0));
 	}
 
+	/**
+	 * paint function
+	 * 
+	 * @see java.awt.Container#paint(java.awt.Graphics)
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
@@ -130,6 +158,9 @@ class pHCurve extends Panel implements ActionListener {
 		}
 	}
 
+	/**
+	 * an event handler for buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

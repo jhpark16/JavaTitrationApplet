@@ -16,12 +16,18 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
 
+/**
+ * Indicator selection page
+ * 
+ * @author Jungho
+ *
+ */
 class Indicator extends Panel implements ActionListener, ItemListener {
 	/**
-	 * 
+	 * control variables
 	 */
 	private static final long serialVersionUID = 1L;
-	Titrate applet;
+	Main applet;
 	private Button but1, but2;
 	private boolean laidOut = false;
 	private Label textLabel, textLabel2, textLabel3, textLabel4;
@@ -29,9 +35,13 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 	private Checkbox cb1, cb2, cb3, cb4;
 	private CheckboxGroup cbg;
 
-	public Image myImage;
+	// indicator colour as a function of pH
+	public Image mIndicatorImg;
 
-	public Indicator(Titrate applet) {
+	/**
+	 * manually places controls
+	 */
+	public Indicator(Main applet) {
 		super();
 		this.applet = applet;
 		setLayout(null);
@@ -71,7 +81,7 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		cb4.addItemListener(this);
 		add(cb4);
 		URL t1 = applet.getCodeBase();
-		myImage = applet.getImage(t1, "resources/indicator.gif");
+		mIndicatorImg = applet.getImage(t1, "resources/indicator.gif");
 		Insets ins = this.getInsets();
 
 		textLabel.setBounds(20 + ins.left, 20 + ins.top, 500, 20);
@@ -87,13 +97,19 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
 
+	/**
+	 * Draw the colour range of indicators
+	 */
 	public void paint(Graphics g) {
 		if (!laidOut) {
 			laidOut = true;
 		}
-		g.drawImage(myImage, 185, 160, this);
+		g.drawImage(mIndicatorImg, 185, 160, this);
 	}
 
+	/**
+	 * An event handler for combo boxes
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
@@ -110,6 +126,9 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		applet.chem.InitTitration();
 	}
 
+	/**
+	 * An event handler for forward and backward buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
