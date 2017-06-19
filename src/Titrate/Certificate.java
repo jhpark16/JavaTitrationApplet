@@ -52,11 +52,11 @@ class Certificate extends Panel implements ActionListener {
 		add(textLabel2);
 		textLabel3 = new Label("");
 		add(textLabel3);
-		textLabel4 = new Label("Congratulation!!!");
+		textLabel4 = new Label("Congratulation!");
 		add(textLabel4);
 		textLabel5 = new Label("");
 		add(textLabel5);
-		textLabel6 = new Label("Now you are one step closer to becoming a chemist.");
+		textLabel6 = new Label("You are now one step closer to becoming a chemist.");
 		add(textLabel6);
 		// myImage = applet.getImage(applet.getCodeBase(),"certificate.gif");
 
@@ -83,9 +83,9 @@ class Certificate extends Panel implements ActionListener {
 		double precision1;
 		precision1 = applet.chem.MErr;
 		if (precision1 < 1.0) {
-			textLabel5.setText("You've done an excellent job on the virtual acid-base titration lab.");
+			textLabel5.setText("You did extremely well in the virtual acid-base titration lab.");
 		} else if (precision1 < 5.0) {
-			textLabel5.setText("You've done a good job on the virtual acid-base titration lab.");
+			textLabel5.setText("You did very well in the virtual acid-base titration lab.");
 		} else {
 			textLabel5.setText("You finished the virtual acid-base titration lab.");
 		}

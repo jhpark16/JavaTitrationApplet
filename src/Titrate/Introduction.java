@@ -47,13 +47,13 @@ class Introduction extends Panel implements ActionListener {
 		textLabel = new Label("Acid-Base Titration Lab");
 		textLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
 		add(textLabel);
-		textLabel2 = new Label("Welcome to the virtual chemistry lab.  You are going to explore");
+		textLabel2 = new Label("Welcome to the virtual chemistry lab. You are going to explore");
 		add(textLabel2);
-		textLabel3 = new Label("what would happen when acids and bases get mixed and decide");
+		textLabel3 = new Label("what happens when acids and bases are mixed and decide");
 		add(textLabel3);
-		textLabel4 = new Label("which point is equivalence point of acid-base titration.  Please");
+		textLabel4 = new Label("which point is the equivalence point of the titration. Please");
 		add(textLabel4);
-		textLabel5 = new Label("read and follow the instruction given carefully.  And enjoy your");
+		textLabel5 = new Label("read and follow the instruction given carefully and enjoy your");
 		add(textLabel5);
 		textLabel6 = new Label("virtual experiment.");
 		add(textLabel6);

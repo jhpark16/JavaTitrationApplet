@@ -54,11 +54,11 @@ class Indicator extends Panel implements ActionListener, ItemListener {
 		add(but2);
 		textLabel = new Label("An indicator is a soluble dye that changes its color noticeably over a fairly");
 		add(textLabel);
-		textLabel2 = new Label("short range of pH. Different indicators show color changes at different pH");
+		textLabel2 = new Label("small pH range. Different indicators change colours at different pH");
 		add(textLabel2);
-		textLabel3 = new Label("values and it is important to determine which indicator to be used according");
+		textLabel3 = new Label("values and it is important to determine which indicator should be used");
 		add(textLabel3);
-		textLabel4 = new Label("to the expected equivalence point.");
+		textLabel4 = new Label("based upon the expected equivalence point.");
 		add(textLabel4);
 		textLabel5 = new Label("Step 3. Choose an indicator which is apporopriate for your titration.");
 		add(textLabel5);

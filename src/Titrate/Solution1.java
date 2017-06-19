@@ -63,13 +63,13 @@ class Solution1 extends Panel implements ActionListener, AdjustmentListener, Ite
 		but2 = new Button("Next >");
 		but2.addActionListener(this);
 		add(but2);
-		textLabel = new Label("An erlenmeyer flask is an appropriate apparatus for mixing solutions. In acid-base");
+		textLabel = new Label("A conical flask can be used to mix solutions. In acid-base titrations,");
 		add(textLabel);
-		textLabel2 = new Label(" titration, a solution of an unknown concentration is placed.");
+		textLabel2 = new Label("the solution we don't know the concentration of is placed in the conical.");
 		add(textLabel2);
-		textLabel3 = new Label("Step 1. Choose a solution you want to put in an erlenmeyer flask and");
+		textLabel3 = new Label("Step 1. Choose a solution you want to put in the conical flask and");
 		add(textLabel3);
-		textLabel4 = new Label("determine the concentration and the volume of the solution.");
+		textLabel4 = new Label("choose what concentration and volume the solution will be.");
 		add(textLabel4);
 		textLabel5 = new Label(" Acid solutions ");
 		add(textLabel5);
@@ -121,7 +121,7 @@ class Solution1 extends Panel implements ActionListener, AdjustmentListener, Ite
 		cb5.setBackground(applet.gbgColor);
 		cb5.addItemListener(this);
 		add(cb5);
-		cb6 = new Checkbox("Ammonia (NH4OH)", cbg, false);
+		cb6 = new Checkbox("Ammonia (NH3)", cbg, false);
 		cb6.setBackground(applet.gbgColor);
 		cb6.addItemListener(this);
 		add(cb6);
