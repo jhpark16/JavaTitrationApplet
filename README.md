@@ -5,7 +5,7 @@ This is a Java applet of a virtual chemistry experiment for a web page. This Ecl
 The compiled code needs to be packaged as a Titrate.jar file if it is to be used for a web page.<br>
 (1) Right click the project from Package Explore in Eclipse.<br>
 (2) Choose Export->Java->Jar file and then hit Next.<br>
-(3) Choose src and resourced under JavaTitrationApplet. Unselect all the other files on the righthand panel. Click "Finish".
+(3) Choose src and resource under JavaTitrationApplet. Unselect all the other files on the righthand panel. Click "Finish".
 
 ## Using this applet in a web page
 The Titration.html shows how the applet is used in a web page. The web page should be run locally (due to security issues) and installed on a web site. 
