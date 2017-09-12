@@ -1,14 +1,17 @@
 # Java Applet for Acid-Base Titration
 This is a Java applet of a virtual chemistry experiment for a web page. This applet simulates a simple acid-base titration.
 
+
 ## Generation of Titrate.jar file
 The compiled code needs to be packaged as a Titrate.jar file if it is to be used for a web page.<br>
 (1) Right click the project from Package Explore in Eclipse.<br>
 (2) Choose Export->Java->Jar file and then hit Next.<br>
 (3) Choose src and resource under JavaTitrationApplet. Unselect all the other files on the righthand panel. Click "Finish".
 
+
 ## Using this applet in a web page
 The Titration.html shows how the applet is used in a web page. The web page cannot be run locally (due to security issues) and should be placed on a web site. 
+
 
 ## Applet structure
 The applet is composed of 8 sequential panels of dialogue.
@@ -35,6 +38,7 @@ Using the volume of solution #1 and #2 and the concentration of #2, the concentr
 
 8. Certificate of titration performance<br>
 This page shows the certificate of your virtual titration experiment. The certificate changes by the accuracy of the titration result.
-  
+
+
 ## License
 JavaTitrationApplet is licensed under <B>the MIT License</B> - see the `LICENSE` file for details.
