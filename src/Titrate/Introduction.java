@@ -38,6 +38,7 @@ class Introduction extends Panel implements ActionListener {
 	public Introduction(Main applet) {
 		super();
 		this.applet = applet;
+		//applet.setBackground(new Color(255,0,0));
 		setLayout(null);
 		Insets ins = getInsets();
 		setFont(new Font("Helvetica", Font.PLAIN, 15));

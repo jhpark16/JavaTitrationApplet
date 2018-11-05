@@ -99,7 +99,7 @@ public class Main extends Applet implements Runnable {
 	private void usePageParams() {
 		String defaultLabel = "Default label";
 		String defaultLabel2 = "PaintMode";
-		String defaultBackground = "C0C0C0";
+		String defaultBackground = "D0D0D0";
 		String defaultForeground = "000000";
 		String labelValue, labelValue2;
 		String backgroundValue;
