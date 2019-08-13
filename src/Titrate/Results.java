@@ -62,11 +62,11 @@ class Results extends Panel implements ActionListener {
 		but3.addActionListener(this);
 		add(but3);
 		textLabel = new Label(
-				"Using the volume at equivalence point obtained from lab data, scientists can calculate");
+				"Using the volume at equivalence point obtained from performing titrations, scientists can");
 		add(textLabel);
-		textLabel2 = new Label("the concentration of the unknown solution. The equation for this procedure is shown");
+		textLabel2 = new Label("calculate the concentration of the unknown solution. The equation required to");
 		add(textLabel2);
-		textLabel3 = new Label("below.");
+		textLabel3 = new Label("do so is shown below.");
 		add(textLabel3);
 		textLabel4 = new Label("C");
 		add(textLabel4);
@@ -200,10 +200,10 @@ class Results extends Panel implements ActionListener {
 		if (!laidOut) {
 			laidOut = true;
 		}
-		textLabel18.setText("Concentration of " + applet.panel2.cbg.getCurrent().getLabel());
-		textLabel23.setText("Volume of " + applet.panel2.cbg.getCurrent().getLabel());
-		textLabel26.setText("Concentration of " + applet.panel3.cbg.getCurrent().getLabel());
-		textLabel29.setText("Volume of " + applet.panel3.cbg.getCurrent().getLabel());
+		textLabel18.setText("Concentration of " + applet.panel2.cbg.getSelectedCheckbox().getLabel());
+		textLabel23.setText("Volume of " + applet.panel2.cbg.getSelectedCheckbox().getLabel());
+		textLabel26.setText("Concentration of " + applet.panel3.cbg.getSelectedCheckbox().getLabel());
+		textLabel29.setText("Volume of " + applet.panel3.cbg.getSelectedCheckbox().getLabel());
 
 		textLabel24.setText(String.valueOf(((int) (applet.chem.Vol1 * 100.0)) / 100.0));
 		textLabel27.setText(String.valueOf(((int) (applet.chem.Mol2 * 100.0)) / 100.0));

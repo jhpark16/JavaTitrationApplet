@@ -73,13 +73,13 @@ class Solution2 extends Panel implements ActionListener, AdjustmentListener, Ite
 		add(textLabel2);
 		textLabel3 = new Label("The solution with a known concentration should be placed in the burette.");
 		add(textLabel3);
-		textLabel4 = new Label("Step 2. Choose a solution you want to place in the burette and choose what");
+		textLabel4 = new Label("Step 2. Choose a solution you want to place in the burette as well as");
 		add(textLabel4);
-		textLabel8 = new Label("the concentration and volume of the solution will be.");
+		textLabel8 = new Label("the concentration and volume you want this solution to be.");
 		add(textLabel8);
-		textLabel5 = new Label(" Acid solutions ");
+		textLabel5 = new Label(" Acidic solutions ");
 		add(textLabel5);
-		textLabel6 = new Label(" Base solutions ");
+		textLabel6 = new Label(" Basic solutions ");
 		add(textLabel6);
 		textLabel7 = new Label("Concentration of the solution");
 		add(textLabel7);

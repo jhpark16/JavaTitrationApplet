@@ -2,15 +2,15 @@
 This is a Java applet of a virtual chemistry experiment for a web page. This applet simulates a simple acid-base titration.
 
 
+## Using this applet in a web page (not feasible after 2017) or run it locally
+The Titration.html shows how the applet can be used in a web page. The web page cannot be run locally due to security restrictions and should be placed on a web site. Since all major web browsers do not support Java applets now, it is not feasible now. To execute this applet locally, use appletviewer of JDK. Go to the root directory of this project and run <B>appletviewer Titration.html</B>. Appletviewer requires Titration.html, Titrate.jar and the resources directory (including images files in the directory).
+
+
 ## Generation of Titrate.jar file
 The compiled code needs to be packaged as a Titrate.jar file if it is to be used for a web page.<br>
-(1) Right click the project from Package Explore in Eclipse.<br>
-(2) Choose Export->Java->Jar file and then hit Next.<br>
-(3) Choose src and resource under JavaTitrationApplet. Unselect all the other files on the righthand panel. Click "Finish".
-
-
-## Using this applet in a web page
-The Titration.html shows how the applet is used in a web page. The web page cannot be run locally (due to security issues) and should be placed on a web site. 
+(1) Right click the project from Package Explore in Eclipse.
+(2) Choose Export->Java->Jar file and then click Next.
+(3) Choose src and resource under JavaTitrationApplet. Unselect all the other files on the righthand panel (.classpath, .gitignore, .project, java.policy.applet, JavaTitration.launch, LICENSE, Readme.md, Titrate.jar, Titration.html). Click "Finish".
 
 
 ## Applet structure

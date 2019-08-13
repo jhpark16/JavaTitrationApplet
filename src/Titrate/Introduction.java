@@ -50,11 +50,11 @@ class Introduction extends Panel implements ActionListener {
 		add(textLabel);
 		textLabel2 = new Label("Welcome to the virtual chemistry lab. You are going to explore");
 		add(textLabel2);
-		textLabel3 = new Label("what happens when acids and bases are mixed and decide");
+		textLabel3 = new Label("what happens when acids and bases are mixed and determine");
 		add(textLabel3);
-		textLabel4 = new Label("which point is the equivalence point of the titration. Please");
+		textLabel4 = new Label("where the equivalence point of the titration is. Please");
 		add(textLabel4);
-		textLabel5 = new Label("read and follow the instruction given carefully and enjoy your");
+		textLabel5 = new Label("read and follow the instructions given carefully and enjoy your");
 		add(textLabel5);
 		textLabel6 = new Label("virtual experiment.");
 		add(textLabel6);
@@ -69,8 +69,8 @@ class Introduction extends Panel implements ActionListener {
 		textLabel4.setBounds(ins.left + 80, ins.top + 170, 500, 20);
 		textLabel5.setBounds(ins.left + 80, ins.top + 190, 500, 20);
 		textLabel6.setBounds(ins.left + 80, ins.top + 210, 300, 20);
-		textLabel7.setBounds(ins.left + 170, ins.top + 260, 100, 20);
-		textfield1.setBounds(ins.left + 270, ins.top + 260, 160, 20);
+		textLabel7.setBounds(ins.left + 170, ins.top + 260, 80, 20);
+		textfield1.setBounds(ins.left + 260, ins.top + 260, 160, 24);
 		but2.setBounds(530 + ins.left, 360 + ins.top, 80, 20);
 	}
 

@@ -283,9 +283,9 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		add(textLabel2);
 		textLabel3 = new Label("Step 4. Adjust the speed at which the solution in the burette");
 		add(textLabel3);
-		textLabel4 = new Label("is added and find the equivalence point. Record the volume of");
+		textLabel4 = new Label("is added and find the equivalence point. Record the");
 		add(textLabel4);
-		textLabel5 = new Label("solution used at the equivalence point.");
+		textLabel5 = new Label("volume of solution used at the equivalence point.");
 		add(textLabel5);
 		textLabel6 = new Label("Speed at which solution is added");
 		add(textLabel6);
@@ -309,7 +309,7 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		add(textLabel14);
 		textLabel15 = new Label("mL");
 		add(textLabel15);
-		textLabel16 = new Label("Solution used");
+		textLabel16 = new Label("Volume used");
 		add(textLabel16);
 		textLabel17 = new Label("0.00");
 		textLabel17.setFont(new Font("Helvetica", Font.BOLD, 15));
@@ -329,13 +329,13 @@ class Titration extends Panel implements ActionListener, AdjustmentListener {
 		add(slider);
 		URL t1 = applet.getCodeBase();
 		mFlask = applet.getImage(t1, "resources/titration.gif");
-
+		
 		textLabel.setBounds(30 + ins.left, 20 + ins.top, 400, 20);
 		textLabel2.setBounds(30 + ins.left, 40 + ins.top, 400, 20);
 		textLabel3.setBounds(30 + ins.left, 70 + ins.top, 410, 20);
 		textLabel4.setBounds(70 + ins.left, 90 + ins.top, 380, 20);
 		textLabel5.setBounds(70 + ins.left, 110 + ins.top, 380, 20);
-		textLabel6.setBounds(45 + ins.left, 140 + ins.top, 190, 20);
+		textLabel6.setBounds(45 + ins.left, 140 + ins.top, 220, 20);
 		textLabel7.setBounds(75 + ins.left, 165 + ins.top, 50, 20);
 		textLabel8.setBounds(205 + ins.left, 165 + ins.top, 50, 20);
 		slider.setBounds(80 + ins.left, 185 + ins.top, 150, 20);

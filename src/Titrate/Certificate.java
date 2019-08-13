@@ -4,11 +4,11 @@ import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
+//import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.Scrollbar;
+//import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -52,7 +52,7 @@ class Certificate extends Panel implements ActionListener {
 		add(textLabel2);
 		textLabel3 = new Label("");
 		add(textLabel3);
-		textLabel4 = new Label("Congratulation!");
+		textLabel4 = new Label("Congratulations!");
 		add(textLabel4);
 		textLabel5 = new Label("");
 		add(textLabel5);
